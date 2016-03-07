@@ -29,9 +29,27 @@ public class convertArabicTest {
     }
 
     @Test
-    public void passFourAndReturnNumeralIV() {
+    public void passingFourStopsHashEntryAfterFirstEntry() {
         setArabic(4);
         assertEquals("IV", number.convertArabic());
+    }
+
+    @Test
+    public void passSixAndReturnNumeralVI() {
+        setArabic(6);
+        assertEquals("VI", number.convertArabic());
+    }
+
+    @Test
+    public void passEightAndReturnNumeralVIII() {
+        setArabic(8);
+        assertEquals("VIII", number.convertArabic());
+    }
+
+    @Test
+    public void passLargeNumberAndIterateOverAllValues() {
+        setArabic(1066);
+        assertEquals("MLXVI", number.convertArabic());
     }
 
 }
