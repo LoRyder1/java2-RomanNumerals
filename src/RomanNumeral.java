@@ -17,7 +17,7 @@ public class RomanNumeral {
                 put(4, "IV");
                 put(1, "I");
             }
-        };
+        }.descendingMap();
 
     }
 
@@ -25,11 +25,13 @@ public class RomanNumeral {
         StringBuilder roman = new StringBuilder();
         int inputNum = arabic;
         for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
-            int repeat = inputNum / entry.getKey();
+            int key = entry.getKey();
             String value = entry.getValue();
+            int repeat = inputNum / key;
             for(int i = 0; i < repeat; i++) {
                 roman.append(value);
             }
+            inputNum = inputNum % key;
         }
         return roman.toString();
     }
