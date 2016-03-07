@@ -14,6 +14,7 @@ public class RomanNumeral {
 
         navMap = new TreeMap<Integer, String>() {
             {
+                put(4, "IV");
                 put(1, "I");
             }
         };

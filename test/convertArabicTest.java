@@ -11,20 +11,26 @@ public class convertArabicTest {
     }
 
     @Test
-    public void convertArabicIsPassedOneAndReturnsNumeralI() {
+    public void passOneAndReturnsNumeralI() {
         setArabic(1);
         assertEquals("I", number.convertArabic());
     }
 
     @Test
-    public void convertArabicIsPassedTwoAndReturnsNumeralII() {
+    public void passTwoAndReturnsNumeralII() {
         setArabic(2);
         assertEquals("II", number.convertArabic());
     }
 
     @Test
-    public void convertArabicIsPassedThreeAndReturnsAppendedStringIII() {
+    public void passThreeAndReturnsAppendedStringIII() {
         setArabic(3);
         assertEquals("III", number.convertArabic());
+    }
+
+    @Test
+    public void passFourAndReturnNumeralIV() {
+        setArabic(4);
+        assertEquals("IV", number.convertArabic());
     }
 }
