@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -20,11 +21,15 @@ public class RomanNumeral {
     }
 
     public String convertArabic() {
-        System.out.println(navMap);
-        if (arabic == 1) {
-            return "I";
-        } else {
-            return "II";
+        StringBuilder roman = new StringBuilder();
+        int inputNum = arabic;
+        for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
+            int repeat = inputNum / entry.getKey();
+            String value = entry.getValue();
+            for(int i = 0; i < repeat; i++) {
+                roman.append(value);
+            }
         }
+        return roman.toString();
     }
 }
