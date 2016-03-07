@@ -8,6 +8,10 @@ public class RomanNumeral {
     }
 
     public String convertArabic() {
-        return "I";
+        if (arabic == 1) {
+            return "I";
+        } else {
+            return "II";
+        }
     }
 }
