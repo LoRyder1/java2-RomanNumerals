@@ -35,7 +35,7 @@ public class convertArabicTest {
     }
 
     @Test
-    public void passSixAndReturnNumeralVI() {
+    public void canReturnNumeralAppendedWithDifferentEntries() {
         setArabic(6);
         assertEquals("VI", number.convertArabic());
     }
@@ -50,6 +50,12 @@ public class convertArabicTest {
     public void passLargeNumberAndIterateOverAllValues() {
         setArabic(1066);
         assertEquals("MLXVI", number.convertArabic());
+    }
+
+    @Test
+    public void passAVeryLargeNumberAndIterate() {
+        setArabic(1989);
+        assertEquals("MCMLXXXIX", number.convertArabic());
     }
 
 }

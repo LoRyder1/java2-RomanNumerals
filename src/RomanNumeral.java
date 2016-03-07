@@ -14,6 +14,16 @@ public class RomanNumeral {
 
         navMap = new TreeMap<Integer, String>() {
             {
+                put(1000, "M");
+                put(900, "CM");
+                put(500, "D");
+                put(400, "CD");
+                put(100, "C");
+                put(90, "XC");
+                put(50, "L");
+                put(40, "XL");
+                put(10, "X");
+                put(9, "IX");
                 put(5, "V");
                 put(4, "IV");
                 put(1, "I");
@@ -22,18 +32,23 @@ public class RomanNumeral {
 
     }
 
+    private StringBuilder roman = new StringBuilder();
+
     public String convertArabic() {
-        StringBuilder roman = new StringBuilder();
         int inputNum = arabic;
         for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
             int key = entry.getKey();
             String value = entry.getValue();
             int repeat = inputNum / key;
-            for(int i = 0; i < repeat; i++) {
-                roman.append(value);
-            }
-            inputNum = inputNum % key;
+            buildString(value, repeat);
+            inputNum %= key;
         }
         return roman.toString();
+    }
+
+    private void buildString(String value, int repeat) {
+        for(int i = 0; i < repeat; i++) {
+            roman.append(value);
+        }
     }
 }
