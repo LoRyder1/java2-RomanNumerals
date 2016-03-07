@@ -4,10 +4,11 @@ import java.util.TreeMap;
 
 public class RomanNumeral {
 
-    private final int arabic;
-    private final String roman;
+    private int arabic;
+    private String roman;
     private NavigableMap<Integer, String> navMap;
     private StringBuilder romanString = new StringBuilder();
+    private int arabicNum = 0;
 
     public RomanNumeral(int arabic, String roman) {
         this.arabic = arabic;
@@ -36,13 +37,12 @@ public class RomanNumeral {
     }
 
     public String convertArabic() {
-        int inputNum = arabic;
         for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
             int key = entry.getKey();
             String value = entry.getValue();
-            int repeat = inputNum / key;
+            int repeat = arabic / key;
             buildString(value, repeat);
-            inputNum %= key;
+            arabic %= key;
         }
         return romanString.toString();
     }
@@ -53,7 +53,20 @@ public class RomanNumeral {
         }
     }
 
+
     public int convertRoman() {
-        return 1;
+        for (Map.Entry<Integer, String> entry : navMap.entrySet()) {
+            int key = entry.getKey();
+            String value = entry.getValue();
+            while (roman.startsWith(value)) {
+                arabicNum += key;
+                subtractString(value.length());
+            }
+        }
+        return arabicNum;
+    }
+
+    private void subtractString(int chars) {
+        roman = roman.substring(chars);
     }
 }
