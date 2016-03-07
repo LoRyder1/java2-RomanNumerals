@@ -7,7 +7,7 @@ public class convertArabicTest {
     private RomanNumeral number;
 
     private void setArabic(int num) {
-        number = new RomanNumeral(num);
+        number = new RomanNumeral(num, null);
     }
 
     @Test

@@ -5,10 +5,13 @@ import java.util.TreeMap;
 public class RomanNumeral {
 
     private final int arabic;
+    private final String roman;
     private NavigableMap<Integer, String> navMap;
+    private StringBuilder romanString = new StringBuilder();
 
-    public RomanNumeral(int arabic) {
+    public RomanNumeral(int arabic, String roman) {
         this.arabic = arabic;
+        this.roman = roman;
 
 //  The outer pair of braces means that you are declaring and initializing an anonymous inner class that extends TreeMap. The inner pair of braces represents an instance initializer, code that is run when an instance is created.
 
@@ -32,8 +35,6 @@ public class RomanNumeral {
 
     }
 
-    private StringBuilder roman = new StringBuilder();
-
     public String convertArabic() {
         int inputNum = arabic;
         for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
@@ -43,12 +44,16 @@ public class RomanNumeral {
             buildString(value, repeat);
             inputNum %= key;
         }
-        return roman.toString();
+        return romanString.toString();
     }
 
     private void buildString(String value, int repeat) {
         for(int i = 0; i < repeat; i++) {
-            roman.append(value);
+            romanString.append(value);
         }
+    }
+
+    public int convertRoman() {
+        return 1;
     }
 }
