@@ -14,6 +14,10 @@ public class RomanNumeral {
         this.arabic = arabic;
         this.roman = roman;
 
+//        declare, instantiate, intialize with constructor
+//        for loop - initialize, terminate, increment
+//        for each loop - for each (A in c)
+
 //  The outer pair of braces means that you are declaring and initializing an anonymous inner class that extends TreeMap. The inner pair of braces represents an instance initializer, code that is run when an instance is created.
 
         navMap = new TreeMap<Integer, String>() {
@@ -38,32 +42,33 @@ public class RomanNumeral {
 
     public String convertArabic() {
         for(Map.Entry<Integer, String> entry : navMap.entrySet()) {
-            int key = entry.getKey();
-            String value = entry.getValue();
-            int repeat = arabic / key;
-            buildString(value, repeat);
-            arabic %= key;
+            buildString(entry.getKey(), entry.getValue());
         }
         return romanString.toString();
     }
+//    Better to use StringBuilder because String is an immutable class and it can not be modified when created. String concatenation results in creating a new instance of the String class with the modified string.
 
-    private void buildString(String value, int repeat) {
+    private void buildString(int key, String value) {
+        int repeat = arabic / key;
         for(int i = 0; i < repeat; i++) {
             romanString.append(value);
         }
+        arabic %= key;
     }
 
 
     public int convertRoman() {
         for (Map.Entry<Integer, String> entry : navMap.entrySet()) {
-            int key = entry.getKey();
-            String value = entry.getValue();
-            while (roman.startsWith(value)) {
-                arabicNum += key;
-                subtractString(value.length());
-            }
+            onMatchAddKey(entry.getKey(), entry.getValue());
         }
         return arabicNum;
+    }
+
+    private void onMatchAddKey(Integer key, String value) {
+        while (roman.startsWith(value)) {
+            arabicNum += key;
+            subtractString(value.length());
+        }
     }
 
     private void subtractString(int chars) {
